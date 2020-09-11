@@ -4,3 +4,6 @@ obj/
 riderModule.iml
 /_ReSharper.Caches/
 /.idea/**
+/.vs/Rubens/v16
+/WebApplication1/WebApplication1.csproj.user
+/WebApplication1/Properties

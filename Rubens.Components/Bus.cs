@@ -16,7 +16,9 @@ namespace Rubens.Components
             }
             if (!_handlers.TryGetValue(typeof(T), out var handlers))
             {
-                throw new ApplicationException();
+                var type = typeof(T);
+                _handlers[type] = new List<Action<T>>();
+
             }
             foreach (var handler in (List<Action<T>>)handlers)
             {
