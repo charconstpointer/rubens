@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Threading.Tasks;
 
-namespace Rubens.Components
+namespace Rubens.Components.ControlPlane
 {
     public interface IControlPlane
     {
-        Task Subscribe(string client, string @event);
-        Task Invoke<T>(T @event);
         EventHandler<EventEmit> Emit { get; set; }
+        Task Subscribe(string @event);
+        Task Invoke<T>(T @event);
     }
 }

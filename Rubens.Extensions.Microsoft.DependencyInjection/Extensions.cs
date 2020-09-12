@@ -1,36 +1,22 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using System;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
-using Rubens.Components;
-using System;
+using Rubens.Components.Bus;
+using Rubens.Components.Configuration;
+using Rubens.Components.ControlPlane;
 
 namespace Rubens.Extensions.Microsoft.DependencyInjection
 {
-    public interface IRubensBuilder
-    {
-
-    }
-
-    public class RubensBuilder
-    {
-    }
-
-    public static class RubensBuilderExtensions
-    {
-        private static string _connectionString;
-        public static RubensBuilder WithServer(this RubensBuilder builder, string connectionString)
-        {
-            _connectionString = connectionString;
-            return builder;
-        }
-    }
-
     public static class Extensions
     {
-        public static IServiceCollection AddRubens(this IServiceCollection services, Action<RubensBuilder> options = null)
+        public static IServiceCollection AddRubens(this IServiceCollection services,
+            Action<RubensConfiguration> options = null)
         {
-            var bus = new Bus();
-
-            services.AddSingleton<IBus>(_ => bus);
+            var cfg = new RubensConfiguration();
+            options?.Invoke(cfg);
+            services.AddSingleton<IBus, Bus>();
+            services.AddSingleton<IControlPlane, ControlPlane>();
+            services.AddSingleton(cfg);
             return services;
         }
 
@@ -38,10 +24,8 @@ namespace Rubens.Extensions.Microsoft.DependencyInjection
         {
             var bus = app.ApplicationServices.GetService<IBus>();
             if (bus is null)
-            {
                 throw new ApplicationException(
                     "Please make sure that you've registered your bus before trying to use it");
-            }
             action(bus);
             return app;
         }

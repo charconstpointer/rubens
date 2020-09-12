@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 
-namespace Rubens.Components
+namespace Rubens.Components.Bus
 {
     public interface IBus
     {
