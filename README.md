@@ -9,5 +9,10 @@ app.UseRubens(x =>
         Console.WriteLine($"<{@event}");
     });
 });
- ```
+```
+Publishing events
+ 
+```
+await _bus.Publish(new Event());
+```
  where Event : IEvent
