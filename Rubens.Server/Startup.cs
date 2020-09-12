@@ -1,12 +1,17 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Rubens.Extensions.Microsoft.DependencyInjection;
+using Microsoft.Extensions.Logging;
 
-namespace WebApplication1
+namespace Rubens.Server
 {
     public class Startup
     {
@@ -20,7 +25,6 @@ namespace WebApplication1
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddRubens(options => options.WithServer("http://localhost:5010"));
             services.AddControllers();
         }
 
@@ -37,15 +41,11 @@ namespace WebApplication1
             app.UseRouting();
 
             app.UseAuthorization();
-            app.UseRubens(x =>
+
+            app.UseEndpoints(endpoints =>
             {
-                x.Subscribe<Event>(@event =>
-                {
-                    Console.WriteLine($">{@event}");
-                    Console.WriteLine($"<{@event}");
-                });
+                endpoints.MapControllers();
             });
-            app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
         }
     }
 }
