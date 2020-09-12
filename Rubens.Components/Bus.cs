@@ -7,12 +7,12 @@ namespace Rubens.Components
     public class Bus : IBus
     {
         private readonly IDictionary<Type, Action<object>> _handlers;
-        private readonly Server _server;
+        private readonly IServer _server;
 
         public Bus()
         {
             _handlers = new Dictionary<Type, Action<object>>();
-            _server = new Server();
+            _server = new InMemoryServer();
             _server.Emit += (sender, o) =>
             {
                 if (_handlers.TryGetValue(o.Type, out var handler))
