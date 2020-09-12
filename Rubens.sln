@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rubens.Extensions.Microsoft
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplication1", "WebApplication1\WebApplication1.csproj", "{4AD9C962-92BE-448E-8284-F4538FE8EE58}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rubens.Server", "Rubens.Server\Rubens.Server.csproj", "{3A36FEE7-5726-4DC5-9298-D973A3A49FA0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{4AD9C962-92BE-448E-8284-F4538FE8EE58}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4AD9C962-92BE-448E-8284-F4538FE8EE58}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4AD9C962-92BE-448E-8284-F4538FE8EE58}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3A36FEE7-5726-4DC5-9298-D973A3A49FA0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3A36FEE7-5726-4DC5-9298-D973A3A49FA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3A36FEE7-5726-4DC5-9298-D973A3A49FA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3A36FEE7-5726-4DC5-9298-D973A3A49FA0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

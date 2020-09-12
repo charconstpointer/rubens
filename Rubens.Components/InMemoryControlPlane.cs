@@ -4,12 +4,17 @@ using System.Threading.Tasks;
 
 namespace Rubens.Components
 {
-    public class InMemoryServer : IServer
+    public class InMemoryControlPlane : IControlPlane
     {
         private readonly IDictionary<string, string> _subs;
-        public InMemoryServer()
+        public InMemoryControlPlane()
         {
             _subs = new Dictionary<string, string>();
+        }
+
+        public async Task Subscribe(string client, string @event)
+        {
+            throw new NotImplementedException();
         }
 
         public async Task Invoke<T>(T @event)
