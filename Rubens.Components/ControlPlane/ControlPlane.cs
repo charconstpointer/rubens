@@ -3,6 +3,7 @@ using System.Net;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
+using Rubens.Components.Configuration;
 
 namespace Rubens.Components.ControlPlane
 {
@@ -12,9 +13,9 @@ namespace Rubens.Components.ControlPlane
         private readonly HttpListener _httpListener;
         private readonly string _rubensConnectionString;
 
-        public ControlPlane(string rubensConnectionString)
+        public ControlPlane(RubensConfiguration rubensConfiguration)
         {
-            _rubensConnectionString = rubensConnectionString;
+            _rubensConnectionString = rubensConfiguration.ConnectionString;
             _httpListener = new HttpListener();
             _httpClient = new HttpClient();
             // _httpListener.Prefixes.Add("http://localhost:5000");
