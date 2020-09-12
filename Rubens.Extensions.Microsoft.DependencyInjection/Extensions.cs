@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Rubens.Components;
-using Rubens.Components.Storage;
 using System;
 
 namespace Rubens.Extensions.Microsoft.DependencyInjection
@@ -29,15 +28,7 @@ namespace Rubens.Extensions.Microsoft.DependencyInjection
     {
         public static IServiceCollection AddRubens(this IServiceCollection services, Action<RubensBuilder> options = null)
         {
-            IBus bus;
-            if (options != null)
-            {
-                bus = new Bus(new InMemoryRubensStorage());
-            }
-            else
-            {
-                bus = new Bus(new InMemoryRubensStorage());
-            }
+            var bus = new Bus();
 
             services.AddSingleton<IBus>(_ => bus);
             return services;
