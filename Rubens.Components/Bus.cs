@@ -6,35 +6,32 @@ namespace Rubens.Components
 {
     public class Bus : IBus
     {
-        private readonly Dictionary<Type, object> _handlers = new Dictionary<Type, object>();
+        private readonly IDictionary<Type, Action<object>> _handlers;
+        private readonly Server _server;
 
-        public void Publish<T>(T @event) where T : class, IEvent
+        public Bus()
         {
-            if (@event is null)
+            _handlers = new Dictionary<Type, Action<object>>();
+            _server = new Server();
+            _server.Emit += (sender, o) =>
             {
-                throw new ArgumentNullException();
-            }
-            if (!_handlers.TryGetValue(typeof(T), out var handlers))
-            {
-                var type = typeof(T);
-                _handlers[type] = new List<Action<T>>();
-
-            }
-            foreach (var handler in (List<Action<T>>)handlers)
-            {
-                Task.Run(() => handler.Invoke(@event));
-            }
+                if (_handlers.TryGetValue(o.Type, out var handler))
+                {
+                    handler.Invoke(o.Event);
+                }
+            };
         }
 
-        public void Subscribe<T>(Action<T> action) where T : class, IEvent
+        public Task Publish<T>(T content) where T : class, IEvent
         {
-            var type = typeof(T);
-            if (!_handlers.ContainsKey(type))
-            {
-                _handlers[type] = new List<Action<T>>();
-            }
-            var handlers = (List<Action<T>>)_handlers[type];
-            handlers.Add(action);
+            _server.Invoke(content);
+            return Task.CompletedTask;
+        }
+
+        public Task Subscribe<T>(Action<T> action) where T : class, IEvent
+        {
+            _handlers[typeof(T)] = x => action((T) x);
+            return Task.CompletedTask;
         }
     }
 }
