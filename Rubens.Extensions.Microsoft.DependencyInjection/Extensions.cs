@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Rubens.Components;
+using Rubens.Components.Storage;
 using System;
 
 namespace Rubens.Extensions.Microsoft.DependencyInjection
@@ -10,22 +11,35 @@ namespace Rubens.Extensions.Microsoft.DependencyInjection
 
     }
 
-    public class RubensBuilder : IRubensBuilder
+    public class RubensBuilder
     {
-        private readonly IBus _bus;
+    }
 
-        public RubensBuilder(IBus bus)
+    public static class RubensBuilderExtensions
+    {
+        private static string _connectionString;
+        public static RubensBuilder WithServer(this RubensBuilder builder, string connectionString)
         {
-            _bus = bus;
+            _connectionString = connectionString;
+            return builder;
         }
-
     }
 
     public static class Extensions
     {
-        public static IServiceCollection AddRubens(this IServiceCollection services)
+        public static IServiceCollection AddRubens(this IServiceCollection services, Action<RubensBuilder> options = null)
         {
-            services.AddSingleton<IBus, Bus>();
+            IBus bus;
+            if (options != null)
+            {
+                bus = new Bus(new InMemoryRubensStorage());
+            }
+            else
+            {
+                bus = new Bus(new InMemoryRubensStorage());
+            }
+
+            services.AddSingleton<IBus>(_ => bus);
             return services;
         }
 
