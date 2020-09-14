@@ -17,3 +17,12 @@ Publishing events
 await _bus.Publish(new Event());
 ```
  where Event : IEvent
+
+
+Without DI
+```
+var cfg = new RubensConfiguration{ConnectionString = "https://localhost:5001"};
+var ctl = new ControlPlane(cfg);
+var bus = new Bus(ctl);
+await bus.Subscribe<Event>(@event => Console.WriteLine(@event.Body));
+```
