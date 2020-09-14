@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
@@ -14,18 +15,15 @@ namespace Rubens.Components.Bus
         public Bus(IControlPlane controlPlane)
         {
             _controlPlane = controlPlane;
-            _handlers = new Dictionary<string, Action<object>>();
+            _handlers = new ConcurrentDictionary<string, Action<object>>();
             _controlPlane.Emit += (sender, o) =>
             {
                 try
                 {
                     if (_handlers.TryGetValue(o.Topic, out var handler))
                     {
-                        Console.WriteLine(o.Topic);
                         handler.Invoke(o.Event);
                     }
-
-                    ;
                 }
                 catch (Exception e)
                 {
