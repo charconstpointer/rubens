@@ -1,4 +1,5 @@
 # Rubens (ruːbənz)
+Basic pub-sub functionality on top of SignalR, other communication methods possibly coming in the future (gRPC, AMQP)
 🌎 powered by SignalR
 ![](https://i.imgur.com/ZRPMZau.png)
 ```
