@@ -31,7 +31,8 @@ namespace WebApplication1.Controllers
         [HttpGet]
         public async Task<IEnumerable<WeatherForecast>> Get()
         {
-            await _bus.Publish(new Event());
+            await _bus.Publish(new Event{Body = "foo"});
+            _logger.LogInformation($"Event published {DateTime.UtcNow}");
             var rng = new Random();
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
                 {

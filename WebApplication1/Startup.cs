@@ -21,7 +21,7 @@ namespace WebApplication1
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRubens(options => options.ConnectionString = "https://localhost:5001");
-            services.AddControllers();
+            services.AddControllers().AddNewtonsoftJson();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -40,6 +40,7 @@ namespace WebApplication1
                 {
                     Console.WriteLine($">{@event}");
                     Console.WriteLine($"<{@event}");
+                    Console.WriteLine($"dude im working {@event.Body}");
                 });
             });
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });

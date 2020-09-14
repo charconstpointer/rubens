@@ -9,5 +9,9 @@
     <ProjectReference Include="..\Rubens.Extensions.Microsoft.DependencyInjection\Rubens.Extensions.Microsoft.DependencyInjection.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.8" />
+  </ItemGroup>
+
 
 </Project>

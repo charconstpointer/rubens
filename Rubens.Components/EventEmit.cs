@@ -4,7 +4,7 @@ namespace Rubens.Components
 {
     public class EventEmit
     {
-        public Type Type { get; set; }
         public object Event { get; set; }
+        public string Topic { get; set; }
     }
 }

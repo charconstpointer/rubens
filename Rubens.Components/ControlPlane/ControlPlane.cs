@@ -1,39 +1,41 @@
 ﻿using System;
-using System.Net;
-using System.Net.Http;
-using System.Net.Http.Json;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.SignalR.Client;
 using Rubens.Components.Configuration;
 
 namespace Rubens.Components.ControlPlane
 {
     public class ControlPlane : IControlPlane
     {
-        private readonly HttpClient _httpClient;
-        private readonly HttpListener _httpListener;
-        private readonly string _rubensConnectionString;
+        private readonly HubConnection _connection;
+        private readonly RubensConfiguration _config;
 
         public ControlPlane(RubensConfiguration rubensConfiguration)
         {
-            _rubensConnectionString = rubensConfiguration.ConnectionString;
-            _httpListener = new HttpListener();
-            _httpClient = new HttpClient();
-            // _httpListener.Prefixes.Add("http://localhost:5000");
-            // Task.Run(() => _httpListener.Start());
+            _config = rubensConfiguration;
+            _connection = new HubConnectionBuilder()
+                .WithUrl($"{_config.ConnectionString}/rubens")
+                .Build();
+            _connection.StartAsync().GetAwaiter().GetResult();
         }
 
         public EventHandler<EventEmit> Emit { get; set; }
 
         public async Task Subscribe(string @event)
         {
-            await _httpClient.PostAsJsonAsync($"{_rubensConnectionString}/subs",
-                new SubscribeToEvent {EventName = @event});
+            await _connection.InvokeAsync("Subscribe", @event);
+            _connection.On<EventEmit>("NewMessage", emit => { Emit(null, emit); });
         }
 
-        public async Task Invoke<T>(T @event)
+        public async Task Invoke<T>(T @event) where T : class, IEvent
         {
-            await _httpClient.PostAsJsonAsync($"{_rubensConnectionString}/subs/emit",
-                new EmitEvent {Value = "dsadsa", EventName = "String"});
+            var message = new EventEmit
+            {
+                Event = @event,
+                Topic = typeof(T).Name
+            };
+
+            await _connection.InvokeAsync("SendMessage", message);
         }
     }
 }

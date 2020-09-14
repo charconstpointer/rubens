@@ -7,6 +7,6 @@ namespace Rubens.Components.ControlPlane
     {
         EventHandler<EventEmit> Emit { get; set; }
         Task Subscribe(string @event);
-        Task Invoke<T>(T @event);
+        Task Invoke<T>(T @event) where T : class, IEvent;
     }
 }
