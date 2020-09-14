@@ -7,8 +7,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rubens.Components", "Rubens
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rubens.Extensions.Microsoft.DependencyInjection", "Rubens.Extensions.Microsoft.DependencyInjection\Rubens.Extensions.Microsoft.DependencyInjection.csproj", "{C818326D-FCB4-464A-A6D8-5BEC734BD1BB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplication1", "WebApplication1\WebApplication1.csproj", "{4AD9C962-92BE-448E-8284-F4538FE8EE58}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rubens.Server", "Rubens.Server\Rubens.Server.csproj", "{3A36FEE7-5726-4DC5-9298-D973A3A49FA0}"
 EndProject
 Global
@@ -33,6 +31,14 @@ Global
 		{3A36FEE7-5726-4DC5-9298-D973A3A49FA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3A36FEE7-5726-4DC5-9298-D973A3A49FA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3A36FEE7-5726-4DC5-9298-D973A3A49FA0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9DF3A0C8-0FC3-414E-BB82-4F3A640A1A39}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9DF3A0C8-0FC3-414E-BB82-4F3A640A1A39}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9DF3A0C8-0FC3-414E-BB82-4F3A640A1A39}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9DF3A0C8-0FC3-414E-BB82-4F3A640A1A39}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0A2D95C0-244A-46E9-8E0D-EA3BCA01B61F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0A2D95C0-244A-46E9-8E0D-EA3BCA01B61F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0A2D95C0-244A-46E9-8E0D-EA3BCA01B61F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0A2D95C0-244A-46E9-8E0D-EA3BCA01B61F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
