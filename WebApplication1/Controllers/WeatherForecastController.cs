@@ -4,7 +4,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Rubens.Components;
 using Rubens.Components.Bus;
 
 namespace WebApplication1.Controllers
@@ -31,7 +30,7 @@ namespace WebApplication1.Controllers
         [HttpGet]
         public async Task<IEnumerable<WeatherForecast>> Get()
         {
-            await _bus.Publish(new Event{Body = "foo"});
+            await _bus.Publish(new Event {Body = "foo"});
             _logger.LogInformation($"Event published {DateTime.UtcNow}");
             var rng = new Random();
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast

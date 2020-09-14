@@ -8,13 +8,11 @@ namespace Rubens.Components.ControlPlane
     public class ControlPlane : IControlPlane
     {
         private readonly HubConnection _connection;
-        private readonly RubensConfiguration _config;
 
         public ControlPlane(RubensConfiguration rubensConfiguration)
         {
-            _config = rubensConfiguration;
             _connection = new HubConnectionBuilder()
-                .WithUrl($"{_config.ConnectionString}/rubens")
+                .WithUrl($"{rubensConfiguration.ConnectionString}/rubens")
                 .Build();
             _connection.StartAsync().GetAwaiter().GetResult();
         }

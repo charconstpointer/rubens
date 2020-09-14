@@ -16,6 +16,7 @@ namespace Rubens.Server
         }
 
         public IConfiguration Configuration { get; }
+
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddSignalR();
@@ -31,10 +32,7 @@ namespace Rubens.Server
 
             app.UseAuthorization();
 
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapHub<RubensHub>("/rubens");
-            });
+            app.UseEndpoints(endpoints => { endpoints.MapHub<RubensHub>("/rubens"); });
         }
     }
 }

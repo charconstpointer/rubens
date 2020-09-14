@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Rubens.Components
+﻿namespace Rubens.Components
 {
     public class EventEmit
     {
