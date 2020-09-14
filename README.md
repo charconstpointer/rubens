@@ -1,4 +1,5 @@
 # Rubens (ruːbənz)
+🌎 powered by SignalR
 ![](https://i.imgur.com/ZRPMZau.png)
 ```
 app.UseRubens(x =>
