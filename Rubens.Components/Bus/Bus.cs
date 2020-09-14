@@ -43,8 +43,8 @@ namespace Rubens.Components.Bus
             await _controlPlane.Subscribe(typeof(T).Name);
             _handlers[typeof(T).Name] = x =>
             {
-                var foo = JsonConvert.DeserializeObject<T>(x.ToString());
-                action(foo);
+                var @event = JsonConvert.DeserializeObject<T>(x.ToString());
+                action(@event);
             };
         }
     }
