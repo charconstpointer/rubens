@@ -35,17 +35,24 @@ namespace Rubens.Components.Bus
 
         public async Task Publish<T>(T content) where T : class, IEvent
         {
-            await _controlPlane.Invoke(content);
+            if (content != null)
+            {
+                await _controlPlane.Invoke(content);
+            }
         }
 
         public async Task Subscribe<T>(Action<T> action) where T : class, IEvent
         {
-            await _controlPlane.Subscribe(typeof(T).Name);
-            _handlers[typeof(T).Name] = x =>
+            var topic = typeof(T).Name;
+            if (!string.IsNullOrEmpty(topic))
             {
-                var @event = JsonConvert.DeserializeObject<T>(x.ToString());
-                action(@event);
-            };
+                await _controlPlane.Subscribe(topic);
+                _handlers[topic] = x =>
+                {
+                    var @event = JsonConvert.DeserializeObject<T>(x.ToString());
+                    action(@event);
+                };
+            }
         }
     }
 }
