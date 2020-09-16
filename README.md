@@ -1,7 +1,7 @@
 # Rubens (ruːbənz)
 ## 📮 Basic pub-sub functionality on top of SignalR  
 #### Other communication methods possibly coming in the future (gRPC, AMQP)
-![](https://i.imgur.com/ZRPMZau.png)
+![](https://i.imgur.com/tUiHROH.png)
 ### 🐕‍🦺 Rubens's server https://hub.docker.com/r/controllerbase/rubens
 To run it 
 ```
