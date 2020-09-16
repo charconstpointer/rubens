@@ -38,6 +38,21 @@ namespace Rubens.Components.Bus
             };
         }
 
+        public async Task Subscribe<T>(Action<T> action) where T : class, IEvent
+        {
+            var topic = typeof(T).Name;
+            if (!string.IsNullOrEmpty(topic))
+            {
+                await _controlPlane.Subscribe(topic);
+                _handlers[topic] = x =>
+                {
+                    var @event = JsonConvert.DeserializeObject<T>(x.ToString());
+                    action(@event);
+                };
+                _logger?.LogInformation($"Successfully subscribed on topic : {topic}");
+            }
+        }
+
         public async Task Subscribe<T, THandler>() where T : class, IEvent where THandler : class, IEventHandler
         {
             _logger.LogInformation("veri najs");
@@ -78,21 +93,6 @@ namespace Rubens.Components.Bus
             }
 
             _logger?.LogCritical($"Cannot publish null message, {nameof(content)}");
-        }
-
-        public async Task Subscribe<T>(Action<T> action) where T : class, IEvent
-        {
-            var topic = typeof(T).Name;
-            if (!string.IsNullOrEmpty(topic))
-            {
-                await _controlPlane.Subscribe(topic);
-                _handlers[topic] = x =>
-                {
-                    var @event = JsonConvert.DeserializeObject<T>(x.ToString());
-                    action(@event);
-                };
-                _logger?.LogInformation($"Successfully subscribed on topic : {topic}");
-            }
         }
     }
 }

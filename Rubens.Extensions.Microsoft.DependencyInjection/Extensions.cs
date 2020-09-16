@@ -28,7 +28,7 @@ namespace Rubens.Extensions.Microsoft.DependencyInjection
             }
 
             services.AddSingleton<IBus, Bus>();
-            services.AddSingleton<IControlPlane, ControlPlane>();
+            services.AddSingleton(ControlPlaneFactory.Create(cfg));
             services.AddSingleton<IHandlersProvider, MicrosoftProvider>();
             services.AddSingleton(cfg);
             return services;

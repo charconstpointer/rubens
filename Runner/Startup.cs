@@ -1,3 +1,4 @@
+using System;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -22,7 +23,7 @@ namespace Runner
             services.AddControllers();
             services.AddRubens(options =>
             {
-                options.ConnectionString = "http://localhost:4444";
+                options.UseInMemoryBus = true;
             });
         }
 
@@ -38,6 +39,7 @@ namespace Runner
             app.UseRubens(options =>
             {
                 options.Subscribe<Event, EventHandler>();
+                // options.Subscribe<Event>(Console.WriteLine);
             });
             app.UseRouting();
 
