@@ -20,7 +20,10 @@ namespace Runner
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddRubens(options => options.ConnectionString = "http://localhost:4444");
+            services.AddRubens(options =>
+            {
+                options.ConnectionString = "http://localhost:4444";
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

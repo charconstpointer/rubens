@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.SignalR;
+﻿using System.Collections.Generic;
+using Microsoft.AspNetCore.SignalR;
 using Microsoft.Extensions.Logging;
 using Rubens.Components;
 using System.Threading.Tasks;

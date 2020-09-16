@@ -27,7 +27,7 @@ namespace Rubens.Components.Bus
                 {
                     if (_handlers.TryGetValue(o.Topic, out var handler))
                     {
-                        _logger.LogInformation($"emit {o.Topic}");
+                        _logger?.LogInformation($"emit {o.Topic}");
                         handler.Invoke(o.Event);
                     }
                 }
