@@ -16,7 +16,7 @@ namespace Rubens.Server.Hubs
         public async Task Subscribe(string topic)
         {
             await Groups.AddToGroupAsync(Context.ConnectionId, topic);
-            _logger.LogInformation($"Sub request @ {topic}");
+            _logger.LogInformation($"Subscription request for topic : {topic}");
         }
 
         public async Task SendMessage(EventEmit emitEvent)
@@ -24,10 +24,9 @@ namespace Rubens.Server.Hubs
             var group = emitEvent.Topic;
             if (!string.IsNullOrEmpty(group))
             {
-                _logger.LogInformation($"Received new request @ {group}");
+                _logger.LogInformation($"Send message for topic : {group}");
                 await Clients.Group(group).SendAsync("NewMessage", emitEvent);
             }
-
         }
     }
 }
