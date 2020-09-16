@@ -22,6 +22,7 @@ namespace Rubens.Components.ControlPlane
         public async Task Subscribe(string @event)
         {
             await _connection.InvokeAsync("Subscribe", @event);
+            //TODO avoid registering it more than once, currently this is applied for each registered handler
             _connection.On<EventEmit>("NewMessage", emit => { Emit(null, emit); });
         }
 
