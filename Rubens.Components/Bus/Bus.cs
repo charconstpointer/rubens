@@ -29,7 +29,7 @@ namespace Rubens.Components.Bus
                 }
                 catch (Exception e)
                 {
-                    _logger.LogError(e.Message);
+                    _logger?.LogError(e.Message);
                 }
             };
 
@@ -40,10 +40,10 @@ namespace Rubens.Components.Bus
             if (content != null)
             {
                 await _controlPlane.Invoke(content);
-                _logger.LogInformation($"Published new message on topic : {typeof(T).Name}");
+                _logger?.LogInformation($"Published new message on topic : {typeof(T).Name}");
                 return;
             }
-            _logger.LogCritical($"Cannot publish null message, {nameof(content)}");
+            _logger?.LogCritical($"Cannot publish null message, {nameof(content)}");
         }
 
         public async Task Subscribe<T>(Action<T> action) where T : class, IEvent
@@ -57,7 +57,7 @@ namespace Rubens.Components.Bus
                     var @event = JsonConvert.DeserializeObject<T>(x.ToString());
                     action(@event);
                 };
-                _logger.LogInformation($"Successfully subscribed on topic : {topic}");
+                _logger?.LogInformation($"Successfully subscribed on topic : {topic}");
             }
         }
     }
