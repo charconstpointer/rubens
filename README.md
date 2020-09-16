@@ -15,6 +15,13 @@ services.AddRubens(options =>
     options.ConnectionString = "http://localhost:4444";
 });
 ```
+##### In Memory Bus
+```
+services.AddRubens(options =>
+{
+    options.UseInMemoryBus = true;
+});
+```
 #### 🏌🏽‍♀️ Run
 ```
 app.UseRubens(x =>
