@@ -6,10 +6,8 @@ EXPOSE 4444
 FROM mcr.microsoft.com/dotnet/core/sdk:3.1-bionic AS build
 WORKDIR /src
 COPY [".", "app/"]
-RUN dotnet restore "app/Rubens.Server/Rubens.Server.csproj"
-COPY . .
-WORKDIR "/src/Rubens.Server"
-RUN dotnet build "Rubens.Server.csproj" -c Release -o /app/build
+RUN dotnet restore "app/Rubens.Server.csproj"
+RUN dotnet build "app/Rubens.Server.csproj" -c Release -o /app/build
 
 FROM build AS publish
 RUN dotnet publish "Rubens.Server.csproj" -c Release -o /app/publish

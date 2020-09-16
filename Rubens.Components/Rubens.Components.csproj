@@ -6,6 +6,8 @@
         <RepositoryType>git</RepositoryType>
         <PackageTags>pub sub message bus</PackageTags>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <PackageVersion>1.0.1</PackageVersion>
+        <PackageReleaseNotes>ieventhandler</PackageReleaseNotes>
     </PropertyGroup>
 
     <ItemGroup>
