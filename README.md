@@ -11,6 +11,8 @@ app.UseRubens(x =>
         Console.WriteLine($">{@event}");
         Console.WriteLine($"<{@event}");
     });
+    //With IEventHandler
+    x.Subscribe<Event,EventHandler>();
 });
 ```
 ### ⚙️ With Manual Wiring
