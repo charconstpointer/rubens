@@ -2,6 +2,12 @@
 
     <PropertyGroup>
         <TargetFramework>netcoreapp3.1</TargetFramework>
+        <IsPackable>true</IsPackable>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <Title>Rubens Server</Title>
+        <RepositoryUrl>https://github.com/charconstpointer/rubens</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
+        <PackageTags>message bus pub sub</PackageTags>
     </PropertyGroup>
 
     <ItemGroup>

@@ -2,6 +2,10 @@
 
     <PropertyGroup>
         <TargetFramework>netstandard2.0</TargetFramework>
+        <RepositoryUrl>https://github.com/charconstpointer/rubens/</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
+        <PackageTags>pub sub message bus</PackageTags>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     </PropertyGroup>
 
     <ItemGroup>
