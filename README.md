@@ -2,7 +2,20 @@
 ## 📮 Basic pub-sub functionality on top of SignalR  
 #### Other communication methods possibly coming in the future (gRPC, AMQP)
 ![](https://i.imgur.com/ZRPMZau.png)
+### 🐕‍🦺 Rubens's server https://hub.docker.com/r/controllerbase/rubens
+To run it 
+```
+docker run -p 4444:4444 controllerbase/rubens 
+```
 ### 🧙🏽‍♂️ With Microsoft's DI
+#### 🥴 Register
+```
+services.AddRubens(options =>
+{
+    options.ConnectionString = "http://localhost:4444";
+});
+```
+#### 🏌🏽‍♀️ Run
 ```
 app.UseRubens(x =>
 {
