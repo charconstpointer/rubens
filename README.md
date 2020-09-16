@@ -32,7 +32,8 @@ app.UseRubens(x =>
 ```
 var cfg = new RubensConfiguration{ConnectionString = "https://localhost:5001"};
 var ctl = new ControlPlane(cfg);
-var bus = new Bus(ctl);
+var logger = new Logger<Bus>(new LoggerFactory());
+var bus = new Bus(ctl, logger:logger);
 await bus.Subscribe<Event>(@event => Console.WriteLine(@event.Body));
 ```
 ### 🥳 Publishing events
