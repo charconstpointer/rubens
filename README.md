@@ -3,7 +3,7 @@
 #### Other communication methods possibly coming in the future (gRPC, AMQP)
 ![](https://i.imgur.com/5qo5aQ0.png)
 ##### PW 💗
-### 🐕‍🦺 Rubens's server https://hub.docker.com/r/controllerbase/rubens
+### 🐕‍🦺 Rubens' server https://hub.docker.com/r/controllerbase/rubens
 To run it 
 ```
 docker run -p 4444:4444 controllerbase/rubens 
