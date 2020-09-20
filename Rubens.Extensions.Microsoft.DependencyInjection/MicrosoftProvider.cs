@@ -13,7 +13,7 @@ namespace Rubens.Extensions.Microsoft.DependencyInjection
             _services = services;
         }
 
-        public bool TryResolve<T>(out T instance) where T : class, IEventHandler
+        public bool TryResolve<T, TH>(out T instance) where TH : class, IEvent where T : class, IEventHandler<TH>
         {
             instance = _services.GetRequiredService<T>();
             return instance != null;

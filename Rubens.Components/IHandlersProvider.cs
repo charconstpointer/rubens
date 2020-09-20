@@ -2,6 +2,6 @@ namespace Rubens.Components
 {
     public interface IHandlersProvider
     {
-        bool TryResolve<T>(out T instance) where T : class, IEventHandler;
+        bool TryResolve<T, TH>(out T instance) where TH : class, IEvent where T : class, IEventHandler<TH>;
     }
 }

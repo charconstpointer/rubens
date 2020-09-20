@@ -17,7 +17,7 @@ namespace Rubens.Extensions.Microsoft.DependencyInjection
         {
             var cfg = new RubensConfiguration();
             options?.Invoke(cfg);
-            var type = typeof(IEventHandler);
+            var type = typeof(IEventHandler<>);
             var types = AppDomain.CurrentDomain.GetAssemblies()
                 .SelectMany(s => s.GetTypes())
                 .Where(p => p.IsClass)

@@ -53,9 +53,8 @@ namespace Rubens.Components.Bus
             }
         }
 
-        public async Task Subscribe<T, THandler>() where T : class, IEvent where THandler : class, IEventHandler
+        public async Task Subscribe<T, THandler>() where T : class, IEvent where THandler : class, IEventHandler<T>
         {
-            _logger.LogInformation("veri najs");
             if (_provider is null)
             {
                 throw new ApplicationException(
@@ -63,8 +62,8 @@ namespace Rubens.Components.Bus
             }
 
             var topic = typeof(T).Name;
-            _logger.LogInformation(topic);
-            var resolved = _provider.TryResolve<THandler>(out var instance);
+            _logger.LogInformation(topic); 
+            var resolved = _provider.TryResolve<THandler, T>(out var instance);
             if (!resolved)
             {
                 throw new ApplicationException(

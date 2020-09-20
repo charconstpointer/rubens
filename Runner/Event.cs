@@ -9,9 +9,9 @@ namespace Runner
         
     }
     
-    public class EventHandler : IEventHandler
+    public class EventHandler : IEventHandler<Event>
     {
-        public async Task Handle<T>(T @event) where T : class, IEvent
+        public async Task Handle(Event @event)
         {
             Console.WriteLine("I am handling well 🦋");
         }

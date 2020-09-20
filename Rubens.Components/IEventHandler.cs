@@ -2,8 +2,8 @@ using System.Threading.Tasks;
 
 namespace Rubens.Components
 {
-    public interface IEventHandler
+    public interface IEventHandler<T> where T : class, IEvent
     {
-        Task Handle<T>(T @event) where T : class, IEvent;
+        Task Handle(T @event);
     }
 }
